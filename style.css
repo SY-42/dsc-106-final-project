@@ -1,0 +1,202 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f4;
+  color: #333;
+}
+
+h1, h2 {
+  text-align: center;
+  margin-top: 20px;
+  margin-bottom: 10px;
+}
+
+h2#subheading {
+  font-style: italic;
+  font-size: 1rem;
+}
+
+h1{
+  font-size: 2rem;
+}
+
+p {
+  font-family:Georgia, 'Times New Roman', Times, serif
+}
+
+#main-container {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  gap: 10px;
+  margin: 2rem auto;
+  max-width: 1200px;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
+  flex-grow: 1;
+}
+
+svg#chart, svg#food-data {
+  padding: 10px;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+table {
+  border-collapse: collapse;
+  border: 1px solid black;
+  text-align: left;
+	vertical-align: top;
+  border-spacing: 5px;
+  width: 1050px;
+  table-layout: fixed;
+  margin: 40px;
+  background-color: #fff;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  margin-left: auto;
+  margin-right: auto;
+}
+
+th, td {
+  padding: 5px;
+}
+
+svg#chart {
+  width: 1050px;
+  height: 400px;
+}
+
+svg#food-data {
+  width: 1050px;
+  height: 80px;
+}
+
+#sidebar {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 220px;
+  height: 400px;
+}
+
+#select-dropdown {
+  font-family: inherit;
+  font-size: 90%;
+  padding: 1em;
+  background-color: white;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+  margin-bottom: 4px;
+}
+
+#filter-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1rem;
+  background-color: white;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+  height: 315px;
+}
+
+#filter-type {
+  width: 100%;
+  padding: 0.5em;
+}
+
+#filter-slider {
+  -webkit-appearance: slider-vertical;
+  appearance: slider-vertical;
+  width: 8px;
+  height: 150px;
+  margin: auto;
+}
+
+#filter-value {
+  font-weight: bold;
+  text-align: center;
+  width: 100%;
+}
+
+.gridlines line {
+  stroke: #ccc;
+  stroke-dasharray: 3,3;
+}
+
+.axis path,
+.axis line {
+  fill: none;
+  stroke: #000;
+  shape-rendering: crispEdges;
+}
+
+circle:hover{
+  transform: scale(150%);
+}
+
+circle {
+  transition: 200ms;
+  transform-origin: center;
+  transform-box: fill-box;
+}
+
+select {
+  padding: 0.5em;
+}
+
+.writeup {
+  max-width: 1000px;
+  background-color: white;
+  padding: 1.5rem;
+  margin: 2rem auto;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+.writeup h2, 
+.writeup h3 {
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.writeup p {
+  text-align: justify;
+  line-height: 1.5;
+  text-indent: 2em;
+  margin-bottom: 0.5rem;
+}
+
+.writeup ul {
+  display: inline-block;
+  list-style-type: none;
+  padding: 0;
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.writeup ul li {
+  display: inline-block;
+  margin: 0 10px;
+  font-weight: bold;
+}
+
+.writeup h3 {
+  margin-top: 1.5rem; 
+}
+
