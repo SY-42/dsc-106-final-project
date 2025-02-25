@@ -97,6 +97,14 @@ function createGlucoseScatterplot(glucoseData) {
       .attr('r', 1.5)  
       .attr('fill', d => (d.highlight ? '#ccc' : 'steelblue'))
       .style('fill-opacity', 0.7);
+
+  svg.append("text")
+    .attr("text-anchor", "end")
+    .attr("transform", "rotate(-90)")
+    .attr("y", -margin.left)
+    .attr("x", -margin.top-100)
+    .text("Glucose Level (mg/dL)")
+  
 }
 
 
