@@ -16,7 +16,6 @@
     
         <div class="container">
             <svg id="chart"></svg>
-            
         </div>
     
         <div id="sidebar">
@@ -50,14 +49,13 @@
                 <label for="filter-slider">Threshold:</label>
                 <input type="range" id="filter-slider" min="0" max="1000" step="1" value="500">
                 <span id="filter-value">500</span>
-                <label for="filter-toggle">Enable Filter:  <input type="checkbox" id="filter-toggle"></label>
-                
+
+                <label for="filter-toggle">Enable Filter:  
+                    <input type="checkbox" id="filter-toggle">
+                </label>
             </div>
+        </div>
     </div>
-            
-    
-    </div>
-    
     
     <div id="tooltip">
         <table>
@@ -76,7 +74,6 @@
                 </tr>
             </thead>
             <tbody>
-
             </tbody>
         </table>
     </div>
@@ -88,19 +85,67 @@
             <li>Caden Pascual</li>
             <li>Sage Yang</li>
             <li>Isaiah Ton</li>
-        <ul>
+        </ul>
         <h3>Decision Rationale</h3>
         <p>Our project mainly focused on visualizing glucose level over time using data collected from patients from wearable devices. We initially tried a line plot to visualize our data, but then realized that it made the data hard to interpret and general trends were not as easy to see with filtering. Thus, we decided to use a scatterplot in the end, which allowed for a more granular view of the data points and trends. By using D3.js, we created an interactive scatter plot to help explore the glucose levels and its relationship with the dietary intake of certain macronutrients. The main goal is to provide insights into daily glucose fluctuations and how they respond to meals. By allowing the user to change between multiple participants and filtering based on multiple different macronutrients, we allow for a more interactive experience that could reveal interesting trends between dietary intake and glucose levels. We also decided to add a hovering feature that allowed a user to hover the food data points in order to see the foods that were eaten at the corresponding time. The reason why we did this was to allow for even more interactivity with the graph that can also further a user’s understanding of our data by allowing them to see what foods were eaten at what time to cause certain dips or spikes.</p>
         <p>
         In terms of filtering, we decided to filter the glucose data by the corresponding macronutrients given their logged time and amount. We decided to make each glucose data point blue and gray them out as we filter to show dynamic changes to the data. The food points are green to differentiate them from the glucose data points. We initially tried filtering by removing points, but found out that it would make the data look really choppy and sparse, and at times, it was difficult to tell what had changed. Thus, we settled on changing the points from blue to gray to show what had filtered out while maintaining the original data set.
         </p>
-    <h3>Development Process</h3>
-    <p>
-    For our development process, everybody contributed to the code and brainstorming of the project. We initially explored the data in basic d3 graphs that plotted glucose amounts against other macronutrients, but we eventually realized that we could combine all of these graphs together to form one cohesive visualization that will let us explore the data in multiple different fashions all in one graph. With this in mind, we then had to go through each participant's data to make sure they had valid data. After cleaning the data we were finally able to start working on the actual visualization. Sage worked on the initial framework of the graph, plotting the initial points and point hovering functionality, Caden worked on importing the data, switching participants and point hovering functionality, Andy worked on the filtering functionality and write up, and Isaiah worked on the CSS and data cleaning. 
-</p>
-    <p>
-        Although there was individual credit given for each part of the workload, we generally worked as a team with helping each other with work, as well as debugging. We spent approximately 30-35 hours total on this project. The part that took the longest was the coding of the functionalities of the graph (hovering and filtering) and the CSS that was required to make things look presentable. We spent a good chunk of time debugging the CSS and functionalities, while the actual plotting and visualization of the graph, surprisingly, took the least amount of time.
-</p>
+        <h3>Development Process</h3>
+        <p>
+            For our development process, everybody contributed to the code and brainstorming of the project. We initially explored the data in basic d3 graphs that plotted glucose amounts against other macronutrients, but we eventually realized that we could combine all of these graphs together to form one cohesive visualization that will let us explore the data in multiple different fashions all in one graph. With this in mind, we then had to go through each participant's data to make sure they had valid data. After cleaning the data we were finally able to start working on the actual visualization. Sage worked on the initial framework of the graph, plotting the initial points and point hovering functionality, Caden worked on importing the data, switching participants and point hovering functionality, Andy worked on the filtering functionality and write up, and Isaiah worked on the CSS and data cleaning. 
+        </p>
+        <p>
+            Although there was individual credit given for each part of the workload, we generally worked as a team with helping each other with work, as well as debugging. We spent approximately 30-35 hours total on this project. The part that took the longest was the coding of the functionalities of the graph (hovering and filtering) and the CSS that was required to make things look presentable. We spent a good chunk of time debugging the CSS and functionalities, while the actual plotting and visualization of the graph, surprisingly, took the least amount of time.
+        </p>
     </div>
+
+    <div id="guessing-section">
+        <h2>Guessing Game: What Contributes to Diabetes?</h2>
+        <p>Select all behaviors or factors you think might be correlated with developing diabetes:</p>
+
+        <form id="guessing-form">
+            <label>
+                <input type="checkbox" name="factors" value="sedentary_lifestyle">
+                Sedentary Lifestyle
+            </label>
+            <br />
+
+            <label>
+                <input type="checkbox" name="factors" value="high_sugar_intake">
+                High Sugar Intake
+            </label>
+            <br />
+
+            <label>
+                <input type="checkbox" name="factors" value="age">
+                Older Age
+            </label>
+            <br />
+
+            <label>
+                <input type="checkbox" name="factors" value="high_fiber">
+                High Dietary Fiber
+            </label>
+            <br />
+
+            <label>
+                <input type="checkbox" name="factors" value="family_history">
+                Genetics / Family History
+            </label>
+            <br />
+
+            <label>
+                <input type="checkbox" name="factors" value="obesity">
+                Obesity
+            </label>
+            <br />
+
+            <button type="button" id="submit-guesses">Submit Guesses</button>
+        </form>
+
+        <div id="guessing-results"></div>
+    </div>
+
 </body>
 </html>

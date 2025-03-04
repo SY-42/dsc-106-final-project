@@ -21,12 +21,12 @@ h2#subheading {
   font-size: 1rem;
 }
 
-h1{
+h1 {
   font-size: 2rem;
 }
 
 p {
-  font-family:Georgia, 'Times New Roman', Times, serif
+  font-family: Georgia, 'Times New Roman', Times, serif;
 }
 
 #main-container {
@@ -57,7 +57,7 @@ table {
   border-collapse: collapse;
   border: 1px solid black;
   text-align: left;
-	vertical-align: top;
+  vertical-align: top;
   border-spacing: 5px;
   width: 1050px;
   table-layout: fixed;
@@ -144,7 +144,7 @@ svg#food-data {
   shape-rendering: crispEdges;
 }
 
-circle:hover{
+circle:hover {
   transform: scale(150%);
 }
 
@@ -200,3 +200,29 @@ select {
   margin-top: 1.5rem; 
 }
 
+#guessing-section {
+  max-width: 600px;
+  margin: 2rem auto;
+  padding: 1rem;
+  background-color: white;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  text-align: left;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+#guessing-section h2 {
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+#guessing-form label {
+  display: inline-block;
+  margin: 0.5rem 0;
+}
+
+#guessing-results p {
+  margin: 0.5rem 0;
+  font-family: Arial, sans-serif;
+  line-height: 1.4;
+}
