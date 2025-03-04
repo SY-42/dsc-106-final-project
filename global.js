@@ -1,4 +1,5 @@
 import * as d3 from "https://cdn.jsdelivr.net/npm/d3@7.9.0/+esm";
+import { averageHeartRateData } from "./scripts/utils.js";
 
 
 async function loadData(fileName) {

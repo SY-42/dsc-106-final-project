@@ -4,7 +4,7 @@
 import * as d3 from "https://cdn.jsdelivr.net/npm/d3@7.9.0/+esm";
 
 
-function averageHeartRateData(data) {
+export function averageHeartRateData(data) {
     // Group data by the minute
     const groupedData = d3.group(
         data,
