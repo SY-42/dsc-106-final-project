@@ -1,5 +1,6 @@
 import * as d3 from "https://cdn.jsdelivr.net/npm/d3@7.9.0/+esm";
 
+
 async function loadData(fileName) {
   try{
     const parser =  fileName.startsWith("./data/Dexcom") ? parseGlucoseData : parseFoodData;
