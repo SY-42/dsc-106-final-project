@@ -56,6 +56,7 @@ let xScale;
 let yScale;
 let globalGlucoseData;
 let globalFoodData;
+let globalHrData;
 
 function createGlucoseScatterplot(glucoseData) {
   const svg = d3
@@ -161,6 +162,15 @@ function createFoodPlot(glucoseData, foodData) {
     .on('mouseleave', (event) => {
       d3.select(event.currentTarget).style('fill-opacity', 0.7);
     });
+
+  svg.append("text")
+    .attr("text-anchor", "end")
+    .attr("transform", "rotate(-90)")
+    .attr("y", -margin.left)
+    .attr("x", -margin.top-100)
+    .text("Glucose Level (mg/dL)")
+  
+  
 }
 
 function updateContent(foodGroup) {
@@ -257,9 +267,11 @@ function updatePlots() {
 async function main(dataset = "001") {
   let glucoseData = await loadData(`./data/Dexcom_${dataset}.csv`);
   let foodData = await loadData(`./data/Food_Log_${dataset}.csv`);
+  let hrData = await d3.csv(`./data/HR_${dataset}.csv`);
   
   globalGlucoseData = glucoseData;
   globalFoodData = foodData;
+  globalHrData = hrData;
 
   createGlucoseScatterplot(glucoseData);
   createFoodPlot(glucoseData, foodData);
