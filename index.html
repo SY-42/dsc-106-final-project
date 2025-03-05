@@ -13,19 +13,10 @@
     <h2 id="subheading">An Interactive Visualization for Comparing the Effects of Different Macronutrients on Glucose Variability</h2>
 
     <div id="main-container">
-        <!-- Y-Axis Selector -->
-        <div id="yaxis-selector">
-            <label for="select-yaxis">Select Y-Axis:</label>
-            <select id="select-yaxis">
-                <option value="Dexcom">Glucose</option>
-                <option value="HR">Heart Rate</option>
-            </select>
-        </div>
         <div class="container">
             <svg id="chart"></svg>
         </div>
-        
-        <!-- Select Participant Dropdown -->
+    
         <div id="sidebar">
             <label id="select-dropdown">
                 Select Person:
@@ -43,8 +34,7 @@
                     <option value="014">Participant 14</option>
                 </select>
             </label>
-            
-        <!-- Filter By Dropdown -->
+    
             <div id="filter-container">
                 <label for="filter-type">Filter by:</label>
                 <select id="filter-type">
@@ -66,7 +56,6 @@
         </div>
     </div>
     
-    <!-- Table Hover Tooltip -->
     <div id="tooltip">
         <table>
             <thead>
@@ -86,6 +75,41 @@
             <tbody>
             </tbody>
         </table>
+    </div>
+
+    <div id="guessing-section">
+        <h2>Guessing Game: What Contributes to Diabetes?</h2>
+        <p>Select all behaviors or factors you think might be correlated with developing diabetes:</p>
+
+        <form id="guessing-form">
+            <label>
+                <input type="checkbox" name="factors" value="high_fasting_glucose">
+                High Fasting Glucose Levels
+            </label>
+            <br />
+
+            <label>
+                <input type="checkbox" name="factors" value="sedentary_lifestyle">
+                Sedentary Lifestyle
+            </label>
+            <br />
+
+            <label>
+                <input type="checkbox" name="factors" value="foods_high_in_fat">
+                Foods High in Fat
+            </label>
+            <br />
+
+            <label>
+                <input type="checkbox" name="factors" value="gender">
+                Gender
+            </label>
+            <br />
+
+            <button type="button" id="submit-guesses">Submit Guesses</button>
+        </form>
+
+        <div id="guessing-results"></div>
     </div>
 
     <div class="writeup">
@@ -109,53 +133,5 @@
             Although there was individual credit given for each part of the workload, we generally worked as a team with helping each other with work, as well as debugging. We spent approximately 30-35 hours total on this project. The part that took the longest was the coding of the functionalities of the graph (hovering and filtering) and the CSS that was required to make things look presentable. We spent a good chunk of time debugging the CSS and functionalities, while the actual plotting and visualization of the graph, surprisingly, took the least amount of time.
         </p>
     </div>
-
-    <div id="guessing-section">
-        <h2>Guessing Game: What Contributes to Diabetes?</h2>
-        <p>Select all behaviors or factors you think might be correlated with developing diabetes:</p>
-
-        <form id="guessing-form">
-            <label>
-                <input type="checkbox" name="factors" value="sedentary_lifestyle">
-                Sedentary Lifestyle
-            </label>
-            <br />
-
-            <label>
-                <input type="checkbox" name="factors" value="high_sugar_intake">
-                High Sugar Intake
-            </label>
-            <br />
-
-            <label>
-                <input type="checkbox" name="factors" value="age">
-                Older Age
-            </label>
-            <br />
-
-            <label>
-                <input type="checkbox" name="factors" value="high_fiber">
-                High Dietary Fiber
-            </label>
-            <br />
-
-            <label>
-                <input type="checkbox" name="factors" value="family_history">
-                Genetics / Family History
-            </label>
-            <br />
-
-            <label>
-                <input type="checkbox" name="factors" value="obesity">
-                Obesity
-            </label>
-            <br />
-
-            <button type="button" id="submit-guesses">Submit Guesses</button>
-        </form>
-
-        <div id="guessing-results"></div>
-    </div>
-
 </body>
 </html>
