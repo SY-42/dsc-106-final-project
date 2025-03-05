@@ -13,10 +13,11 @@ export function averageHeartRateData(data) {
     );
 
     const averagedData = Array.from(groupedData, ([minute, values]) => ({
-        minute,
+        timestamp: new Date(minute),
         // Calculate average heart rate (change values to floats)
-        avgHeartRate: d3.mean(values, (d)  => parseFloat(d[" hr"])),  
+        avgHeartRate: d3.mean(values, (d)  => parseFloat(d["hr"])),  
     }));
     
     return averagedData;
 }
+

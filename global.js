@@ -57,17 +57,25 @@ let yScale;
 let globalGlucoseData;
 let globalFoodData;
 let globalHrData;
+let currDataset = "Dexcom";
+let currParticipant = "001";
 
-function createGlucoseScatterplot(glucoseData) {
+function createScatterplot(data) {
+  // Clear all data from the charts
   const svg = d3
       .select('#chart')
       .append('svg')
       .attr('viewBox', `0 0 ${width} ${height}`)
       .style('overflow', 'visible');
 
+  // Find the right variables based on the selected dataset
+  const xVar = currDataset === "Dexcom" ? "glucose" : "avgHeartRate";
+  console.log(xVar)
+  const yAxisLabel = currDataset === "Dexcom" ? "Glucose Level (mg/dL)" : "Heart Rate (bpm)";
+
   xScale = d3
       .scaleTime()
-      .domain(d3.extent(glucoseData, d => d.timestamp))
+      .domain(d3.extent(data, d => d.timestamp))
       .range([0, width])
       .nice();
 
@@ -94,13 +102,25 @@ function createGlucoseScatterplot(glucoseData) {
 
   dots
     .selectAll('circle')
-    .data(glucoseData)
+    .data(data)
     .join('circle')
     .attr('cx', d => xScale(d.timestamp))
-    .attr('cy', d => yScale(d.glucose))
+    .attr('cy', d => yScale(+d[xVar]))
     .attr('r', 1.5)
     .attr('fill', d => d.highlight ? '#ccc' : 'steelblue')
     .style('fill-opacity', 0.7);
+    
+
+  // Dynamically change the y-axis label based on the selected dataset
+  // Add axes labels
+  svg.append("text")
+  .attr("text-anchor", "middle") 
+  .attr("transform", `rotate(-90)`) 
+  .attr("x", -height / 2) 
+  .attr("y", margin.left / 2 - 30) 
+  .style("font-size", "14px")
+  .attr("fill", "black")
+  .text(yAxisLabel);
 
 }
 
@@ -163,13 +183,7 @@ function createFoodPlot(glucoseData, foodData) {
       d3.select(event.currentTarget).style('fill-opacity', 0.7);
     });
 
-  // Add axes labels
-  svg.append("text")
-    .attr("text-anchor", "end")
-    .attr("transform", "rotate(-90)")
-    .attr("y", -margin.left)
-    .attr("x", -margin.top-100)
-    .text("Glucose Level (mg/dL)")
+  
   
   
 }
@@ -242,7 +256,7 @@ function updatePlots() {
   const fullGlucoseData = globalGlucoseData.map(d => ({ ...d, highlight: false }));
 
   if (!isFilteringEnabled) {
-    createGlucoseScatterplot(fullGlucoseData);
+    createScatterplot(fullGlucoseData);
     createFoodPlot(fullGlucoseData, globalFoodData);
     return;
   }
@@ -261,29 +275,45 @@ function updatePlots() {
     });
   }
 
-  createGlucoseScatterplot(fullGlucoseData);
+  createScatterplot(fullGlucoseData);
   createFoodPlot(fullGlucoseData, filteredFoodData);
 }
 
+// Function to load data and create plots
 async function main(dataset = "001") {
+  d3.select("#chart").selectAll("*").remove();
+  let data;
   let glucoseData = await loadData(`./data/Dexcom_${dataset}.csv`);
   let foodData = await loadData(`./data/Food_Log_${dataset}.csv`);
   let hrData = averageHeartRateData(await d3.csv(`./data/HR_${dataset}.csv`));
-  
+
+  if (currDataset === "Dexcom") {
+    data = glucoseData;
+  } else {
+    data = hrData;
+  }
+
   globalGlucoseData = glucoseData;
   globalFoodData = foodData;
   globalHrData = hrData;
-  console.log(hrData);
-  createGlucoseScatterplot(glucoseData);
+  console.log(globalHrData);
+
+  createScatterplot(data);
   createFoodPlot(glucoseData, foodData);
   updateSliderLabel();
 }
 
-// Change the selected participant when the dropdown changes
+// Change the selected participant when selected in dropdown
 d3.select("#select-dataset").on("change", function() {
-  d3.select("#chart").selectAll("*").remove();
-  const selectedDataset = this.value;
-  main(selectedDataset);
+  currParticipant = this.value;
+  main(currParticipant);
+});
+
+// Change curr Dataset when selected in dropdown
+d3.select("#select-yaxis").on("change", function() {
+  currDataset = this.value;
+  main(currParticipant);
+  console.log(currDataset);
 });
 
 d3.select("#filter-toggle").on("change", updatePlots);
@@ -294,6 +324,8 @@ main().then(() => {
   updatePlots(); 
 });
 
+
+// Add JS Code for the Diabetes Risk Factor Quiz
 const correctFactors = new Set([
   "sedentary_lifestyle",
   "high_sugar_intake",
@@ -308,6 +340,7 @@ document.addEventListener("DOMContentLoaded", function() {
     guessButton.addEventListener("click", handleGuessSubmit);
   }
 });
+
 
 function handleGuessSubmit() {
   const checkboxes = document.querySelectorAll('input[name="factors"]:checked');
