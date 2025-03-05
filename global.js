@@ -1,5 +1,4 @@
 import * as d3 from "https://cdn.jsdelivr.net/npm/d3@7.9.0/+esm";
-import { averageHeartRateData } from "./scripts/utils.js";
 
 
 async function loadData(fileName) {
@@ -49,6 +48,7 @@ function parseFoodData(foodData) {
   return data;
 }
 
+
 const width = 1000;
 const height = 400;
 
@@ -59,6 +59,7 @@ let globalFoodData;
 let globalHrData;
 let currDataset = "Dexcom";
 let currParticipant = "001";
+
 
 function createScatterplot(data) {
   // Clear all data from the charts
@@ -142,7 +143,6 @@ function createFoodPlot(glucoseData, foodData) {
       height: height - margin.top - margin.bottom,
   };
 
-  // Gridlines
   const gridlines = svg
       .append('g')
       .attr('class', 'gridlines')
@@ -150,7 +150,6 @@ function createFoodPlot(glucoseData, foodData) {
 
   gridlines.call(d3.axisLeft(yScale).tickFormat('').tickSize(-usableArea.width));
 
-  // Axes
   const xAxis = d3.axisBottom(xScale);
   const yAxis = d3.axisLeft(yScale);
 
@@ -191,7 +190,7 @@ function createFoodPlot(glucoseData, foodData) {
 function updateContent(foodGroup) {
   let tableData = d3.select("tbody");
   let tableTime = document.getElementById("food-time");
-  tableData.html(""); 
+  tableData.html(""); // clear
 
   tableTime.innerHTML = `<th colspan="6">Time: ${foodGroup.start.toLocaleString()}<th>`;
 
@@ -279,6 +278,7 @@ function updatePlots() {
   createFoodPlot(fullGlucoseData, filteredFoodData);
 }
 
+
 // Function to load data and create plots
 async function main(dataset = "001") {
   d3.select("#chart").selectAll("*").remove();
@@ -293,6 +293,7 @@ async function main(dataset = "001") {
     data = hrData;
   }
 
+  
   globalGlucoseData = glucoseData;
   globalFoodData = foodData;
   globalHrData = hrData;
@@ -325,13 +326,12 @@ main().then(() => {
 });
 
 
+
 // Add JS Code for the Diabetes Risk Factor Quiz
 const correctFactors = new Set([
+  "high_fasting_glucose",
   "sedentary_lifestyle",
-  "high_sugar_intake",
-  "family_history",
-  "obesity",
-  "age"
+  "foods_high_in_fat"
 ]);
 
 document.addEventListener("DOMContentLoaded", function() {
@@ -362,19 +362,20 @@ function handleGuessSubmit() {
   const totalCorrect = correctFactors.size;
   let resultMsg = `
     <p>You selected <strong>${userSelections.length}</strong> factor(s).</p>
-    <p><strong>${correctCount}</strong> out of <strong>${totalCorrect}</strong> match known major risk factors for diabetes.</p>
+    <p><strong>${correctCount}</strong> out of <strong>${totalCorrect}</strong> match our major risk factors for diabetes.</p>
   `;
 
   if (incorrectCount > 0) {
-    resultMsg += `<p>You included <strong>${incorrectCount}</strong> factor(s) not strongly associated with diabetes risk.</p>`;
+    resultMsg += `<p>You included <strong>${incorrectCount}</strong> factor(s) that are not recognized as major contributors.</p>`;
   }
 
   if (missedFactors.length > 0) {
-    resultMsg += `<p>You missed these known risk factor(s): ${missedFactors.join(", ")}.</p>`;
+    resultMsg += `<p>You missed these factor(s): ${missedFactors.join(", ")}.</p>`;
   }
 
   resultMsg += `
-    <p><em>Remember:</em> Many things can influence diabetes risk, including obesity, physical inactivity, high sugar intake, genetics, and age.</p>
+    <p><em>Note:</em> High fasting glucose levels, sedentary lifestyle, and consuming foods high in fat 
+    can contribute to diabetes risk. Gender, in this simplified quiz, is not considered a main factor.</p>
   `;
 
   const guessingResults = document.getElementById("guessing-results");
