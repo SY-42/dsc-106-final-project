@@ -21,7 +21,7 @@ h2#subheading {
   font-size: 1rem;
 }
 
-h1 {
+h1{
   font-size: 2rem;
 }
 
@@ -57,7 +57,7 @@ table {
   border-collapse: collapse;
   border: 1px solid black;
   text-align: left;
-  vertical-align: top;
+	vertical-align: top;
   border-spacing: 5px;
   width: 1050px;
   table-layout: fixed;
@@ -144,7 +144,7 @@ svg#food-data {
   shape-rendering: crispEdges;
 }
 
-circle:hover {
+circle:hover{
   transform: scale(150%);
 }
 
