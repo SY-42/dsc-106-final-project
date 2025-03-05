@@ -1,5 +1,5 @@
 import * as d3 from "https://cdn.jsdelivr.net/npm/d3@7.9.0/+esm";
-
+import { averageHeartRateData } from "./scripts/utils.js";
 
 async function loadData(fileName) {
   try {
@@ -242,6 +242,7 @@ function updateSliderLabel() {
 }
 
 function updatePlots() {
+  if (currDataset !== "Dexcom") return;
   d3.select("#chart").selectAll("svg").remove();
 
   if (!globalFoodData || !globalGlucoseData) return;
@@ -293,7 +294,6 @@ async function main(dataset = "001") {
     data = hrData;
   }
 
-  
   globalGlucoseData = glucoseData;
   globalFoodData = foodData;
   globalHrData = hrData;

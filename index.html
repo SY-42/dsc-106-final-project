@@ -16,7 +16,8 @@
         <div class="container">
             <svg id="chart"></svg>
         </div>
-    
+        
+        <!-- Select Participant Dropdown -->
         <div id="sidebar">
             <label id="select-dropdown">
                 Select Person:
@@ -34,7 +35,8 @@
                     <option value="014">Participant 14</option>
                 </select>
             </label>
-    
+            
+            <!-- Filter By Dropdown -->
             <div id="filter-container">
                 <label for="filter-type">Filter by:</label>
                 <select id="filter-type">
@@ -55,7 +57,8 @@
             </div>
         </div>
     </div>
-    
+
+    <!-- Table Hover Tooltip -->
     <div id="tooltip">
         <table>
             <thead>
@@ -75,6 +78,14 @@
             <tbody>
             </tbody>
         </table>
+    </div>
+    <!-- Y-Axis Selector -->
+    <div id="yaxis-selector">
+        <label for="select-yaxis">Select Y-Axis:</label>
+        <select id="select-yaxis">
+            <option value="Dexcom">Glucose</option>
+            <option value="HR">Heart Rate</option>
+        </select>
     </div>
 
     <div id="guessing-section">
