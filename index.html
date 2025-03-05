@@ -14,7 +14,14 @@
     <h2 id="subheading">An Interactive Visualization for Comparing the Effects of Different Macronutrients on Glucose Variability</h2>
 
     <div id="main-container">
-    
+        <!-- Y-Axis Selector -->
+        <div id="yaxis-selector">
+            <label for="select-yaxis">Select Y-Axis:</label>
+            <select id="select-yaxis">
+                <option value="Dexcom">Glucose</option>
+                <option value="HR">Heart Rate</option>
+            </select>
+        </div>
         <div class="container">
             <svg id="chart"></svg>
         </div>
@@ -37,7 +44,7 @@
                     <option value="014">Participant 14</option>
                 </select>
             </label>
-    
+            
         <!-- Filter By Dropdown -->
             <div id="filter-container">
                 <label for="filter-type">Filter by:</label>
@@ -60,8 +67,8 @@
         </div>
     </div>
     
+    <!-- Table Hover Tooltip -->
     <div id="tooltip">
-        <!-- Table Hover Tooltip -->
         <table>
             <thead>
                 <tr id="food-time">

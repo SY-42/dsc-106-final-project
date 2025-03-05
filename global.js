@@ -163,6 +163,7 @@ function createFoodPlot(glucoseData, foodData) {
       d3.select(event.currentTarget).style('fill-opacity', 0.7);
     });
 
+  // Add axes labels
   svg.append("text")
     .attr("text-anchor", "end")
     .attr("transform", "rotate(-90)")
@@ -267,17 +268,18 @@ function updatePlots() {
 async function main(dataset = "001") {
   let glucoseData = await loadData(`./data/Dexcom_${dataset}.csv`);
   let foodData = await loadData(`./data/Food_Log_${dataset}.csv`);
-  let hrData = await d3.csv(`./data/HR_${dataset}.csv`);
+  let hrData = averageHeartRateData(await d3.csv(`./data/HR_${dataset}.csv`));
   
   globalGlucoseData = glucoseData;
   globalFoodData = foodData;
   globalHrData = hrData;
-
+  console.log(hrData);
   createGlucoseScatterplot(glucoseData);
   createFoodPlot(glucoseData, foodData);
   updateSliderLabel();
 }
 
+// Change the selected participant when the dropdown changes
 d3.select("#select-dataset").on("change", function() {
   d3.select("#chart").selectAll("*").remove();
   const selectedDataset = this.value;

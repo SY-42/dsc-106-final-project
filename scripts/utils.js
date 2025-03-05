@@ -20,6 +20,3 @@ export function averageHeartRateData(data) {
     
     return averagedData;
 }
-
-let hrData = await d3.csv("data/HR_001.csv");
-console.log(averageHeartRateData(hrData));
