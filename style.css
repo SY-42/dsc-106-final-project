@@ -200,7 +200,7 @@ select {
   margin-top: 1.5rem; 
 }
 
-#guessing-section {
+#guessing-section, #global-section {
   max-width: 600px;
   margin: 2rem auto;
   padding: 1rem;
@@ -225,4 +225,16 @@ select {
   margin: 0.5rem 0;
   font-family: Arial, sans-serif;
   line-height: 1.4;
+}
+
+#country-search {
+  margin-left: 20px;
+}
+
+.current-country {
+  background-color: aquamarine;
+}
+
+#global-stats, #country-search {
+  text-align: center;
 }

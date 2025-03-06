@@ -9,9 +9,19 @@
 </head>
 <body>
 
-    <h1>Watching Glucose Variables with Wearables</h1>
-    <h2 id="subheading">An Interactive Visualization for Comparing the Effects of Different Macronutrients on Glucose Variability</h2>
+    <h1>Understanding Diabetes</h1>
+    <h2 id="subheading">An Interactive Visualization Explaining Causes, Risk Factors, Indicators, and Prevalence of Diabetes</h2>
 
+    
+    <!-- Y-Axis Selector -->
+    <div id="yaxis-selector">
+        <label for="select-yaxis">Select Y-Axis:</label>
+        <select id="select-yaxis">
+            <option value="Dexcom">Glucose</option>
+            <option value="HR">Heart Rate</option>
+        </select>
+    </div>
+    
     <div id="main-container">
         <div class="container">
             <svg id="chart"></svg>
@@ -79,14 +89,6 @@
             </tbody>
         </table>
     </div>
-    <!-- Y-Axis Selector -->
-    <div id="yaxis-selector">
-        <label for="select-yaxis">Select Y-Axis:</label>
-        <select id="select-yaxis">
-            <option value="Dexcom">Glucose</option>
-            <option value="HR">Heart Rate</option>
-        </select>
-    </div>
 
     <div id="guessing-section">
         <h2>Guessing Game: What Contributes to Diabetes?</h2>
@@ -121,6 +123,26 @@
         </form>
 
         <div id="guessing-results"></div>
+    </div>
+
+
+    <div id="global-section">
+
+        <h2>
+            Diabetes Prevalence in Different Countries
+        </h2>
+        
+        <div id="global-stats">
+        </div>
+        
+        <div id="country-search">
+            <label>
+                Country: 
+                <input type="text" id="country-input" placeholder="Search for your country...">
+            </label>
+            
+        </div>
+
     </div>
 
     <div class="writeup">
