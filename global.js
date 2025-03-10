@@ -552,6 +552,7 @@ document.addEventListener("DOMContentLoaded", function() {
         });
   
       currentSectionIndex++;
+      updateButtons();
     } else {
       // End of presentation: disable the button.
       d3.select("#next-button")
@@ -560,6 +561,48 @@ document.addEventListener("DOMContentLoaded", function() {
     }
   }
   
-  // Attach the click event to the "Next" button.
+   // Function to transition to the previous section.
+   function transitionToPreviousSection() {
+    if (currentSectionIndex > 0) {
+      const currentId = sections[currentSectionIndex];
+      const prevId = sections[currentSectionIndex - 1];
+  
+      // Slide out the current section to the right.
+      d3.select(`#${currentId}`)
+        .transition()
+        .duration(750)
+        .style("transform", `translateX(${viewportWidth}px)`)
+        .style("opacity", 0)
+        .on("end", function() {
+          // Hide the current section.
+          d3.select(this)
+            .style("display", "none")
+            .style("transform", null);
+  
+          // Prepare the previous section: set it offscreen to the left.
+          d3.select(`#${prevId}`)
+            .style("display", "block")
+            .style("transform", `translateX(-${viewportWidth}px)`)
+            .style("opacity", 0)
+            // Slide it in from the left.
+            .transition()
+            .duration(850)
+            .style("transform", "translateX(0px)")
+            .style("opacity", 1);
+        });
+  
+      currentSectionIndex--;
+      updateButtons();
+    }
+  }
+  
+  // Update button states based on currentSectionIndex.
+  function updateButtons() {
+    d3.select("#prev-button").property("disabled", currentSectionIndex <= 0);
+    d3.select("#next-button").property("disabled", currentSectionIndex > sections.length - 1);
+  }
+  
+  // Attach event listeners to the buttons.
   document.getElementById("next-button").addEventListener("click", transitionToNextSection);
+  document.getElementById("prev-button").addEventListener("click", transitionToPreviousSection);
 });
