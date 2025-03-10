@@ -22,11 +22,12 @@ export function averageHeartRateData(data) {
 }
 
 export function restingHeartRateData(data) {
-    const sortedHR = data.sort(d3.ascending);
+    const heartRates = data.map(d => parseFloat(d.hr));
+    const sortedHR = heartRates.sort(d3.ascending);
     // Find resting heart rate (lowest 10% of values)
-    const restingData = sortedHR.slice(0, Math.ceil(sortedHR.length * 0.1));
-    const heartRates = restingData.map(d => d.hr);
-    const restingHeartRate = d3.mean(heartRates);
+    const restingData = sortedHR.slice(0, Math.ceil(sortedHR.length * 0.15));
+    const restingHeartRate = d3.mean(restingData);
+    console.log(sortedHR);
     return restingHeartRate;
 }
 
