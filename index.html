@@ -103,38 +103,60 @@
 
     <div id="guessing-section" class="section" style="display:none;">
         <h2>Guessing Game: What Contributes to Diabetes?</h2>
-        <p>After exploring the graphs above, select all behaviors or factors you think might be correlated with developing diabetes:</p>
-
+        <p>Select all behaviors or factors you think might be correlated with developing diabetes:</p>
+      
         <form id="guessing-form">
-            <label>
-                <input type="checkbox" name="factors" value="high_fasting_glucose">
-                High Fasting Glucose Levels
-            </label>
-            <br />
-
-            <label>
-                <input type="checkbox" name="factors" value="sedentary_lifestyle">
-                Sedentary Lifestyle
-            </label>
-            <br />
-
-            <label>
-                <input type="checkbox" name="factors" value="foods_high_in_fat">
-                Foods High in Fat
-            </label>
-            <br />
-
-            <label>
-                <input type="checkbox" name="factors" value="gender">
-                Gender
-            </label>
-            <br />
-
-            <button type="button" id="submit-guesses">Submit Guesses</button>
+          <!-- Match checkbox values exactly to the correctFactors set -->
+          <label>
+            <input type="checkbox" name="factors" value="High Fasting Glucose Levels">
+            High Fasting Glucose Levels
+          </label>
+          <br />
+      
+          <label>
+            <input type="checkbox" name="factors" value="Sedentary Lifestyle">
+            Sedentary Lifestyle
+          </label>
+          <br />
+      
+          <label>
+            <input type="checkbox" name="factors" value="Foods High in Fat">
+            Foods High in Fat
+          </label>
+          <br />
+      
+          <label>
+            <input type="checkbox" name="factors" value="Gender">
+            Gender
+          </label>
+          <br />
+      
+          <label>
+            <input type="checkbox" name="factors" value="Age">
+            Age
+          </label>
+          <br />
+      
+          <label>
+            <input type="checkbox" name="factors" value="Stress">
+            Stress
+          </label>
+          <br />
+      
+          <label>
+            <input type="checkbox" name="factors" value="Sugar">
+            Sugar
+          </label>
+          <br />
+      
+          <button type="button" id="submit-guesses">Submit Guesses</button>
         </form>
-
+      
         <div id="guessing-results"></div>
-    </div>
+      </div>
+      
+    
+    
 
 
     <div id="global-section" class="section" style="display:none;">

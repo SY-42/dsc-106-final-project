@@ -259,7 +259,16 @@ select {
   border-radius: 2px;
 }
 
-#next-button:hover {
+#prev-button {
+  position: fixed;
+  bottom: 50vh;
+  left: 20px;
+  opacity: 80%;
+  border: none;
+  border-radius: 2px;
+}
+
+#next-button:hover, #prev-button:hover {
   opacity: 100%;
   transform: scale(1.3);
   transition: ease-in;
