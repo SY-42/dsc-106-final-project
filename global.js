@@ -127,7 +127,6 @@ function createScatterplot(data, restingData) {
   // Add resting heart rate if dataset is HR 
   if (currDataset === "HR") {
     // Add a horizontal line for the resting heart rate
-    console.log(restingData)
     svg.append('line')
       .attr('x1', usableArea.left)
       .attr('y1', yScale(restingData))
@@ -136,7 +135,18 @@ function createScatterplot(data, restingData) {
       .attr('stroke', 'red')
       .attr('stroke-width', 1)
       .attr('stroke-dasharray', '10,5');
+
+    // Add resting heart rate text
+    svg.append('text')
+      .attr('x', usableArea.left + 10) 
+      .attr('y', yScale(restingData) + 13)   
+      .attr('dy', '0.35em')             
+      .attr('fill', 'red')
+      .attr('font-size', '12px')
+      .attr('font-family', 'Arial')
+      .text('Resting Heart Rate');
   }
+
   // Dynamically change the y-axis label based on the selected dataset
   // Add axes labels
   svg.append("text")
