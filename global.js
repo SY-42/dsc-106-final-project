@@ -553,7 +553,3 @@ document.addEventListener("DOMContentLoaded", function() {
   // Attach the click event to the "Next" button.
   document.getElementById("next-button").addEventListener("click", transitionToNextSection);
 });
-
-
-
-document.getElementById("next-button").addEventListener("click", transitionToNextSection);
