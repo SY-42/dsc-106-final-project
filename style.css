@@ -249,3 +249,24 @@ select {
   opacity: 1;
 }
 
+#intro {
+  max-width: 800px;
+  margin: 2rem auto;
+  padding: 1.5rem;
+  background-color: white;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  font-family: Arial, sans-serif;
+  line-height: 1.6;
+}
+
+#yaxis-selector {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  gap: 10px;
+  margin: 2rem auto;
+  max-width: 1200px;
+}
