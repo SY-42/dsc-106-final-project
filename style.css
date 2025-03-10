@@ -254,7 +254,9 @@ select {
   position: fixed;
   bottom: 50vh;
   right: 20px;
-  opacity: 50%;
+  opacity: 80%;
+  border: none;
+  border-radius: 2px;
 }
 
 #next-button:hover {
