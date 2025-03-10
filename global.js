@@ -456,11 +456,10 @@ main().then(() => {
 
 
 
-// Add JS Code for the Diabetes Risk Factor Quiz
 const correctFactors = new Set([
-  "high_fasting_glucose",
-  "sedentary_lifestyle",
-  "foods_high_in_fat"
+  "High Fasting Glucose Levels",
+  "Sedentary Lifestyle",
+  "Foods High in Fat"
 ]);
 
 document.addEventListener("DOMContentLoaded", function() {
@@ -470,14 +469,11 @@ document.addEventListener("DOMContentLoaded", function() {
   }
 });
 
-
 function handleGuessSubmit() {
   const checkboxes = document.querySelectorAll('input[name="factors"]:checked');
   const userSelections = Array.from(checkboxes).map(cb => cb.value);
-
   let correctCount = 0;
   let incorrectCount = 0;
-
   userSelections.forEach(selection => {
     if (correctFactors.has(selection)) {
       correctCount++;
@@ -485,124 +481,64 @@ function handleGuessSubmit() {
       incorrectCount++;
     }
   });
-
   const missedFactors = [...correctFactors].filter(f => !userSelections.includes(f));
-  
   const totalCorrect = correctFactors.size;
   let resultMsg = `
     <p>You selected <strong>${userSelections.length}</strong> factor(s).</p>
     <p><strong>${correctCount}</strong> out of <strong>${totalCorrect}</strong> match our major risk factors for diabetes.</p>
   `;
-
   if (incorrectCount > 0) {
     resultMsg += `<p>You included <strong>${incorrectCount}</strong> factor(s) that are not recognized as major contributors.</p>`;
   }
-
   if (missedFactors.length > 0) {
     resultMsg += `<p>You missed these factor(s): ${missedFactors.join(", ")}.</p>`;
   }
-
   resultMsg += `
     <p><em>Note:</em> High fasting glucose levels, sedentary lifestyle, and consuming foods high in fat 
-    can contribute to diabetes risk. Gender, in this simplified quiz, is not considered a main factor.</p>
+    can contribute to diabetes risk. In this simplified quiz, other factors like gender, age, stress, and sugar 
+    are not considered main factors.</p>
   `;
-
   const guessingResults = document.getElementById("guessing-results");
   guessingResults.innerHTML = resultMsg;
 }
 
-
-
-
 document.addEventListener("DOMContentLoaded", function() {
-  // Define the order of sections by their IDs.
+  // Define the order of your sections by their IDs.
   const sections = ["intro", "global-section", "guessing-section", "visualization", "writeup"];
   let currentSectionIndex = 0;
-  
-  // Compute the viewport width in pixels (absolute value)
   const viewportWidth = window.innerWidth;
-  
   function transitionToNextSection() {
     if (currentSectionIndex < sections.length - 1) {
       const currentId = sections[currentSectionIndex];
       const nextId = sections[currentSectionIndex + 1];
-  
-      // Slide out the current section to the left.
       d3.select(`#${currentId}`)
         .transition()
         .duration(750)
         .style("transform", `translateX(-${viewportWidth}px)`)
         .style("opacity", 0)
         .on("end", function() {
-          // Hide the current section and reset transform.
           d3.select(this)
             .style("display", "none")
             .style("transform", null);
-  
-          // Prepare the next section: make it visible, position it offscreen to the right.
           d3.select(`#${nextId}`)
             .style("display", "block")
             .style("transform", `translateX(${viewportWidth}px)`)
             .style("opacity", 0)
-            // Slide it in from the right.
             .transition()
             .duration(850)
             .style("transform", "translateX(0px)")
             .style("opacity", 1);
         });
-  
       currentSectionIndex++;
       updateButtons();
     } else {
-      // End of presentation: disable the button.
       d3.select("#next-button")
         .attr("disabled", true)
         .text("End of Presentation");
     }
   }
   
-   // Function to transition to the previous section.
-   function transitionToPreviousSection() {
-    if (currentSectionIndex > 0) {
-      const currentId = sections[currentSectionIndex];
-      const prevId = sections[currentSectionIndex - 1];
-  
-      // Slide out the current section to the right.
-      d3.select(`#${currentId}`)
-        .transition()
-        .duration(750)
-        .style("transform", `translateX(${viewportWidth}px)`)
-        .style("opacity", 0)
-        .on("end", function() {
-          // Hide the current section.
-          d3.select(this)
-            .style("display", "none")
-            .style("transform", null);
-  
-          // Prepare the previous section: set it offscreen to the left.
-          d3.select(`#${prevId}`)
-            .style("display", "block")
-            .style("transform", `translateX(-${viewportWidth}px)`)
-            .style("opacity", 0)
-            // Slide it in from the left.
-            .transition()
-            .duration(850)
-            .style("transform", "translateX(0px)")
-            .style("opacity", 1);
-        });
-  
-      currentSectionIndex--;
-      updateButtons();
-    }
-  }
-  
-  // Update button states based on currentSectionIndex.
-  function updateButtons() {
-    d3.select("#prev-button").property("disabled", currentSectionIndex <= 0);
-    d3.select("#next-button").property("disabled", currentSectionIndex > sections.length - 1);
-  }
-  
-  // Attach event listeners to the buttons.
+  // Attach the click event to the "Next" button.
   document.getElementById("next-button").addEventListener("click", transitionToNextSection);
   document.getElementById("prev-button").addEventListener("click", transitionToPreviousSection);
 });
