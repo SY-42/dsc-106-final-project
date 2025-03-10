@@ -1,5 +1,5 @@
 import * as d3 from "https://cdn.jsdelivr.net/npm/d3@7.9.0/+esm";
-import { averageHeartRateData } from "./scripts/utils.js";
+import { averageHeartRateData, restingHeartRateData } from "./scripts/utils.js";
 
 // set the dimensions and margins of country graph
 var margin = {top: 20, right: 30, bottom: 40, left: 150},
@@ -74,7 +74,7 @@ let currDataset = "Dexcom";
 let currParticipant = "001";
 
 
-function createScatterplot(data) {
+function createScatterplot(data, restingData) {
   // Clear all data from the charts
   const svg = d3
       .select('#chart')
@@ -84,7 +84,6 @@ function createScatterplot(data) {
 
   // Find the right variables based on the selected dataset
   const xVar = currDataset === "Dexcom" ? "glucose" : "avgHeartRate";
-  console.log(xVar)
   const yAxisLabel = currDataset === "Dexcom" ? "Glucose Level (mg/dL)" : "Heart Rate (bpm)";
 
   xScale = d3
@@ -125,6 +124,19 @@ function createScatterplot(data) {
     .style('fill-opacity', 0.7);
     
 
+  // Add resting heart rate if dataset is HR 
+  if (currDataset === "HR") {
+    // Add a horizontal line for the resting heart rate
+    console.log(restingData)
+    svg.append('line')
+      .attr('x1', usableArea.left)
+      .attr('y1', yScale(restingData))
+      .attr('x2', usableArea.right)
+      .attr('y2', yScale(restingData))
+      .attr('stroke', 'red')
+      .attr('stroke-width', 1)
+      .attr('stroke-dasharray', '10,5');
+  }
   // Dynamically change the y-axis label based on the selected dataset
   // Add axes labels
   svg.append("text")
@@ -137,6 +149,7 @@ function createScatterplot(data) {
   .text(yAxisLabel);
 
 }
+
 
 function createFoodPlot(glucoseData, foodData) {
   const svg = d3
@@ -363,20 +376,22 @@ async function main(dataset = "001") {
   let data;
   let glucoseData = await loadData(`./data/Dexcom_${dataset}.csv`);
   let foodData = await loadData(`./data/Food_Log_${dataset}.csv`);
-  let hrData = averageHeartRateData(await d3.csv(`./data/HR_${dataset}.csv`));
+  let hrData = await d3.csv(`./data/HR_${dataset}.csv`);
+  let restingData = null;
 
   if (currDataset === "Dexcom") {
     data = glucoseData;
   } else {
-    data = hrData;
+    data = averageHeartRateData(hrData);
+    restingData = restingHeartRateData(hrData);
+    console.log(restingData);
   }
 
   globalGlucoseData = glucoseData;
   globalFoodData = foodData;
   globalHrData = hrData;
-  console.log(globalHrData);
 
-  createScatterplot(data);
+  createScatterplot(data, restingData);
   createFoodPlot(glucoseData, foodData);
   updateSliderLabel();
 
