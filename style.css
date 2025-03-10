@@ -238,3 +238,14 @@ select {
 #global-stats, #country-search {
   text-align: center;
 }
+
+.section {
+  position: relative; /* or absolute if you prefer */
+  width: 100%;        /* Ensure it takes up the full container width */
+  overflow: hidden;   /* Prevent content spillover if needed */
+}
+
+.visible {
+  opacity: 1;
+}
+

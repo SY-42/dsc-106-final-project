@@ -485,3 +485,60 @@ function handleGuessSubmit() {
   const guessingResults = document.getElementById("guessing-results");
   guessingResults.innerHTML = resultMsg;
 }
+
+
+
+
+document.addEventListener("DOMContentLoaded", function() {
+  // Define the order of your sections by their IDs.
+  const sections = ["intro", "global-section", "guessing-section", "visualization", "writeup"];
+  let currentSectionIndex = 0;
+  
+  // Compute the viewport width in pixels (absolute value)
+  const viewportWidth = window.innerWidth;
+  
+  function transitionToNextSection() {
+    if (currentSectionIndex < sections.length - 1) {
+      const currentId = sections[currentSectionIndex];
+      const nextId = sections[currentSectionIndex + 1];
+  
+      // Slide out the current section to the left.
+      d3.select(`#${currentId}`)
+        .transition()
+        .duration(750)
+        .style("transform", `translateX(-${viewportWidth}px)`)
+        .style("opacity", 0)
+        .on("end", function() {
+          // Hide the current section and reset transform.
+          d3.select(this)
+            .style("display", "none")
+            .style("transform", null);
+  
+          // Prepare the next section: make it visible, position it offscreen to the right.
+          d3.select(`#${nextId}`)
+            .style("display", "block")
+            .style("transform", `translateX(${viewportWidth}px)`)
+            .style("opacity", 0)
+            // Slide it in from the right.
+            .transition()
+            .duration(850)
+            .style("transform", "translateX(0px)")
+            .style("opacity", 1);
+        });
+  
+      currentSectionIndex++;
+    } else {
+      // End of presentation: disable the button.
+      d3.select("#next-button")
+        .attr("disabled", true)
+        .text("End of Presentation");
+    }
+  }
+  
+  // Attach the click event to the "Next" button.
+  document.getElementById("next-button").addEventListener("click", transitionToNextSection);
+});
+
+
+
+document.getElementById("next-button").addEventListener("click", transitionToNextSection);
