@@ -515,7 +515,7 @@ function handleGuessSubmit() {
 
 
 document.addEventListener("DOMContentLoaded", function() {
-  // Define the order of your sections by their IDs.
+  // Define the order of sections by their IDs.
   const sections = ["intro", "global-section", "guessing-section", "visualization", "writeup"];
   let currentSectionIndex = 0;
   
