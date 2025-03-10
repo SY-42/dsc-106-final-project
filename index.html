@@ -12,85 +12,96 @@
     <h1>Understanding Diabetes</h1>
     <h2 id="subheading">An Interactive Visualization Explaining Causes, Risk Factors, Indicators, and Prevalence of Diabetes</h2>
 
-    
-    <!-- Y-Axis Selector -->
-    <div id="yaxis-selector">
-        <label for="select-yaxis">Select Y-Axis:</label>
-        <select id="select-yaxis">
-            <option value="Dexcom">Glucose</option>
-            <option value="HR">Heart Rate</option>
-        </select>
+    <div id="intro" class="section visible">
+        <p>
+            Diabetes is a chronic disease that occurs when the body cannot effectively use insulin, a hormone that regulates blood sugar levels. 
+            This can lead to high blood sugar levels, which can cause a range of health problems over time. 
+            There are two main types of diabetes: Type 1 and Type 2. 
+            Type 1 diabetes is an autoimmune disease that occurs when the body attacks and destroys the cells in the pancreas that produce insulin. 
+            Type 2 diabetes is more common and occurs when the body becomes resistant to insulin or does not produce enough insulin.
+        </p>
     </div>
-    
-    <div id="main-container">
-        <div class="container">
-            <svg id="chart"></svg>
+
+    <div id="visualization" class="section" style="display:none;">
+        <!-- Y-Axis Selector -->
+        <div id="yaxis-selector">
+            <label for="select-yaxis">Select Y-Axis:</label>
+            <select id="select-yaxis">
+                <option value="Dexcom">Glucose</option>
+                <option value="HR">Heart Rate</option>
+            </select>
         </div>
         
-        <!-- Select Participant Dropdown -->
-        <div id="sidebar">
-            <label id="select-dropdown">
-                Select Person:
-                <select id="select-dataset">
-                    <option value="001">Participant 1</option>
-                    <option value="002">Participant 2</option>
-                    <option value="004">Participant 4</option>
-                    <option value="005">Participant 5</option>
-                    <option value="006">Participant 6</option>
-                    <option value="008">Participant 8</option>
-                    <option value="009">Participant 9</option>
-                    <option value="010">Participant 10</option>
-                    <option value="011">Participant 11</option>
-                    <option value="012">Participant 12</option>
-                    <option value="014">Participant 14</option>
-                </select>
-            </label>
-            
-            <!-- Filter By Dropdown -->
-            <div id="filter-container">
-                <label for="filter-type">Filter by:</label>
-                <select id="filter-type">
-                    <option value="calories">Calories</option>
-                    <option value="sugar">Sugar</option>
-                    <option value="dietary_fiber">Dietary Fiber</option>
-                    <option value="total_fat">Total Fat</option>
-                    <option value="protein">Protein</option>
-                    <option value="total_carb">Total Carbs</option>
-                </select>
-                <label for="filter-slider">Threshold:</label>
-                <input type="range" id="filter-slider" min="0" max="1000" step="1" value="500">
-                <span id="filter-value">500</span>
-
-                <label for="filter-toggle">Enable Filter:  
-                    <input type="checkbox" id="filter-toggle">
-                </label>
+        <div id="main-container">
+            <div class="container">
+                <svg id="chart"></svg>
             </div>
+            
+            <!-- Select Participant Dropdown -->
+            <div id="sidebar">
+                <label id="select-dropdown">
+                    Select Person:
+                    <select id="select-dataset">
+                        <option value="001">Participant 1</option>
+                        <option value="002">Participant 2</option>
+                        <option value="004">Participant 4</option>
+                        <option value="005">Participant 5</option>
+                        <option value="006">Participant 6</option>
+                        <option value="008">Participant 8</option>
+                        <option value="009">Participant 9</option>
+                        <option value="010">Participant 10</option>
+                        <option value="011">Participant 11</option>
+                        <option value="012">Participant 12</option>
+                        <option value="014">Participant 14</option>
+                    </select>
+                </label>
+                
+                <!-- Filter By Dropdown -->
+                <div id="filter-container">
+                    <label for="filter-type">Filter by:</label>
+                    <select id="filter-type">
+                        <option value="calories">Calories</option>
+                        <option value="sugar">Sugar</option>
+                        <option value="dietary_fiber">Dietary Fiber</option>
+                        <option value="total_fat">Total Fat</option>
+                        <option value="protein">Protein</option>
+                        <option value="total_carb">Total Carbs</option>
+                    </select>
+                    <label for="filter-slider">Threshold:</label>
+                    <input type="range" id="filter-slider" min="0" max="1000" step="1" value="500">
+                    <span id="filter-value">500</span>
+
+                    <label for="filter-toggle">Enable Filter:  
+                        <input type="checkbox" id="filter-toggle">
+                    </label>
+                </div>
+            </div>
+        </div>
+
+        <!-- Table Hover Tooltip -->
+        <div id="tooltip">
+            <table>
+                <thead>
+                    <tr id="food-time">
+                        <th colspan="5" style="color:chocolate"><i>Hover a green point to begin.</i></th>
+                    </tr>
+                    <tr>
+                        <th>Food</th>
+                        <th>Calories</th>
+                        <th>Sugar (g)</th>
+                        <th>Fiber (g)</th>
+                        <th>Fat (g)</th>
+                        <th>Protein (g)</th>
+                        <th>Carbs (g)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
         </div>
     </div>
 
-    <!-- Table Hover Tooltip -->
-    <div id="tooltip">
-        <table>
-            <thead>
-                <tr id="food-time">
-                    <th colspan="5" style="color:chocolate"><i>Hover a green point to begin.</i></th>
-                </tr>
-                <tr>
-                    <th>Food</th>
-                    <th>Calories</th>
-                    <th>Sugar (g)</th>
-                    <th>Fiber (g)</th>
-                    <th>Fat (g)</th>
-                    <th>Protein (g)</th>
-                    <th>Carbs (g)</th>
-                </tr>
-            </thead>
-            <tbody>
-            </tbody>
-        </table>
-    </div>
-
-    <div id="guessing-section">
+    <div id="guessing-section" class="section" style="display:none;">
         <h2>Guessing Game: What Contributes to Diabetes?</h2>
         <p>After exploring the graphs above, select all behaviors or factors you think might be correlated with developing diabetes:</p>
 
@@ -126,7 +137,7 @@
     </div>
 
 
-    <div id="global-section">
+    <div id="global-section" class="section" style="display:none;">
 
         <h2>
             Diabetes Prevalence in Different Countries
@@ -144,7 +155,7 @@
         </div>
 
     </div>
-    <div class="writeup">
+    <div class="writeup" class="section" style="display:none;">
         <h2>Team GG</h2>
         <ul>
             <li>Andy Huang</li>
@@ -170,5 +181,6 @@
             Doing this will continue to require many trial and error attempts to find the perfect way to convey and display everything that we want to. 
         </p>
     </div>
+    <button id="next-button">Next</button>
 </body>
 </html>
