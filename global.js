@@ -553,11 +553,6 @@ document.addEventListener("DOMContentLoaded", function() {
   
       currentSectionIndex++;
       updateButtons();
-    } else {
-      // End of presentation: disable the button.
-      d3.select("#next-button")
-        .attr("disabled", true)
-        .text("End of Presentation");
     }
   }
   
@@ -598,8 +593,19 @@ document.addEventListener("DOMContentLoaded", function() {
   
   // Update button states based on currentSectionIndex.
   function updateButtons() {
-    d3.select("#prev-button").property("disabled", currentSectionIndex <= 0);
-    d3.select("#next-button").property("disabled", currentSectionIndex > sections.length - 1);
+    // Hide next button if at the end, otherwise show it.
+    if (currentSectionIndex >= sections.length - 1) {
+      d3.select("#next-button").style("display", "none");
+    } else {
+      d3.select("#next-button").style("display", "inline-block");
+    }
+    // Hide previous button if at the start, otherwise show it.
+    if (currentSectionIndex <= 0) {
+      d3.select("#prev-button").style("display", "none");
+    } else {
+      d3.select("#prev-button").style("display", "inline-block");
+    }
+    
   }
   
   // Attach event listeners to the buttons.
