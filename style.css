@@ -21,6 +21,12 @@ h2#subheading {
   font-size: 1rem;
 }
 
+h3#subheading {
+  font-style: bold;
+  font-size: 0.8rem;
+  text-align: center;
+}
+
 h1 {
   font-size: 2rem;
 }
