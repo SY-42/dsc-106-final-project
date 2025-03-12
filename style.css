@@ -13,11 +13,11 @@ h1, h2 {
   margin-top: 20px;
   margin-bottom: 10px;
 }
-h2#subheading {
+h2.subheading {
   font-style: italic;
   font-size: 1rem;
 }
-h3#subheading {
+h3.subheading {
   font-style: bold;
   font-size: 0.8rem;
   text-align: center;
