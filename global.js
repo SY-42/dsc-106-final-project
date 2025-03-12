@@ -495,7 +495,7 @@ function handleGuessSubmit() {
   }
   resultMsg += `
     <p><em>Note:</em> High fasting glucose levels, sedentary lifestyle, and consuming foods high in fat 
-    can contribute to diabetes risk. In this simplified quiz, other factors like gender, age, stress, and sugar 
+    can contribute to diabetes risk. In this simplified quiz, other factors like gender, age, stress, and foods high in sugar 
     are not considered main factors.</p>
   `;
   const guessingResults = document.getElementById("guessing-results");
