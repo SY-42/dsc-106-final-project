@@ -118,9 +118,6 @@ svg#food-data {
   width: 100%;
 }
 
-#tooltip {
-  height: max-content;
-}
 
 .gridlines line {
   stroke: #ccc;
