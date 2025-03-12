@@ -97,7 +97,7 @@ function createScatterplot(data, restingData) {
       .domain([0, 250]) 
       .range([height, 0]);
 
-  const margin = { top: 10, right: 10, bottom: 30, left: 20 };
+  const margin = { top: 30, right: 10, bottom: 30, left: 20 };
 
   const usableArea = {
       top: margin.top,
@@ -159,7 +159,17 @@ function createScatterplot(data, restingData) {
   .text(yAxisLabel);
 
   // Add Participant label and diagnosis
-  const diagnosisText = isPrediabetic(parseInt(currParticipant));
+  const participantNum = parseInt(currParticipant)
+  const diagnosisText = isPrediabetic(participantNum);
+  diagnosisText.then((result) => {
+    svg.append("text")
+      .attr("text-anchor", "middle")
+      .attr("x", width / 2)
+      .attr("y", margin.top / 2)
+      .style("font-size", "16px")
+      .attr("fill", "black")
+      .text(`Participant ${parseInt(participantNum)} - ${result.diagnosis} (HbA1c: ${result.HbA1c}%)`);
+  });
 }
 
 
