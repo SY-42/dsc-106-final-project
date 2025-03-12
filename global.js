@@ -1,5 +1,5 @@
 import * as d3 from "https://cdn.jsdelivr.net/npm/d3@7.9.0/+esm";
-import { averageHeartRateData, restingHeartRateData } from "./scripts/utils.js";
+import { averageHeartRateData, restingHeartRateData, isPrediabetic} from "./scripts/utils.js";
 
 // set the dimensions and margins of country graph
 var margin = {top: 20, right: 30, bottom: 40, left: 150},
@@ -158,6 +158,8 @@ function createScatterplot(data, restingData) {
   .attr("fill", "black")
   .text(yAxisLabel);
 
+  // Add Participant label and diagnosis
+  const diagnosisText = isPrediabetic(parseInt(currParticipant));
 }
 
 
@@ -467,6 +469,15 @@ document.addEventListener("DOMContentLoaded", function() {
   if (guessButton) {
     guessButton.addEventListener("click", handleGuessSubmit);
   }
+
+  d3.select("#filter-slider").on("input", function () {
+    d3.select("#filter-value").text(this.value); // Update displayed value
+    updatePlots();
+  });
+
+  d3.select("#filter-type").on("change", function () {
+    updateSliderLabel();
+  });
 });
 
 function handleGuessSubmit() {

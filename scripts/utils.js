@@ -31,3 +31,14 @@ export function restingHeartRateData(data) {
     return restingHeartRate;
 }
 
+export async function isPrediabetic(id) {
+    const data = await d3.csv(`data/Demographics.csv`);
+    const record = data.find(row => row.ID === String(id));
+    const HbA1c = parseFloat(record.HbA1c);
+
+    return {
+        HbA1c,
+        // Diagnose if hba1c is over 5.7%dd
+        diagnosis: HbA1c >= 5.7 ? "Prediabetic" : "Normal"
+    }; 
+}
