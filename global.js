@@ -513,7 +513,7 @@ document.addEventListener("DOMContentLoaded", function() {
       const nextId = sections[currentSectionIndex + 1];
       d3.select(`#${currentId}`)
         .transition()
-        .duration(750)
+        .duration(500)
         .style("transform", `translateX(-${viewportWidth}px)`)
         .style("opacity", 0)
         .on("end", function() {
@@ -525,7 +525,7 @@ document.addEventListener("DOMContentLoaded", function() {
             .style("transform", `translateX(${viewportWidth}px)`)
             .style("opacity", 0)
             .transition()
-            .duration(850)
+            .duration(650)
             .style("transform", "translateX(0px)")
             .style("opacity", 1);
         });
@@ -543,7 +543,7 @@ document.addEventListener("DOMContentLoaded", function() {
       // Slide out the current section to the right.
       d3.select(`#${currentId}`)
         .transition()
-        .duration(750)
+        .duration(500)
         .style("transform", `translateX(${viewportWidth}px)`)
         .style("opacity", 0)
         .on("end", function() {
@@ -559,7 +559,7 @@ document.addEventListener("DOMContentLoaded", function() {
             .style("opacity", 0)
             // Slide it in from the left.
             .transition()
-            .duration(850)
+            .duration(650)
             .style("transform", "translateX(0px)")
             .style("opacity", 1);
         });
