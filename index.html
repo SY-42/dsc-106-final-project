@@ -10,12 +10,22 @@
 <body>
     <h1>Understanding Diabetes</h1>
     <h2 id="subheading">An Interactive Visualization Explaining Causes, Risk Factors, Indicators, and Prevalence of Diabetes</h2>
-    <h3 id="subheading">By Andy Huang, Cayden Pascual, Sage Yang, Isaiah Ton</h3>
+    <h3 id="subheading">By Andy Huang, Caden Pascual, Sage Yang, Isaiah Ton</h3>
 
     <div id="intro" class="section visible">
         <p>
             Diabetes is a chronic disease that affects how insulin is processed in the body. It is a serious disease that can result in blindness, kidney failure, heart attacks, stroke and lower limb amputation.
             According to the <a href="https://www.who.int/health-topics/diabetes#tab=tab_1" target="_blank">World Health Organization</a>, the number of people living with diabetes rose from 200 million in 1990 to 830 million in 2022, with increasing prevalence in low and middle income countries.
+        </p>
+        <br>
+        <p>
+            In this interactive visualization, you will find out more about diabetes, including the factors and risks related to the disease.
+            You might also challenge some of the assumptions you might have heard about diabetes.
+        </p>
+        <br>
+        <p>
+            First, let's get a sense of scale. 
+            The following visualization shows the prevalence of diabetes in different countries.
         </p>
     </div>
 
@@ -91,16 +101,11 @@
 
     <div id="guessing-section" class="section" style="display:none;">
         <h2>Guessing Game: What Contributes to Diabetes?</h2>
-        <p>Select all behaviors or factors you think might be correlated with developing diabetes:</p>
+        <p>Select all factors or indicators you think might contribute to diabetes:</p>
         <form id="guessing-form">
           <label>
             <input type="checkbox" name="factors" value="High Fasting Glucose Levels">
             High Fasting Glucose Levels
-          </label>
-          <br />
-          <label>
-            <input type="checkbox" name="factors" value="Sedentary Lifestyle">
-            Sedentary Lifestyle
           </label>
           <br />
           <label>
@@ -114,6 +119,11 @@
           </label>
           <br />
           <label>
+            <input type="checkbox" name="factors" value="Foods High in Sugar">
+            Foods High in Sugar
+          </label>
+          <br />
+          <label>
             <input type="checkbox" name="factors" value="Age">
             Age
           </label>
@@ -124,8 +134,8 @@
           </label>
           <br />
           <label>
-            <input type="checkbox" name="factors" value="Foods High in Sugar">
-            Foods High in Sugar
+            <input type="checkbox" name="factors" value="Sedentary Lifestyle">
+            Sedentary Lifestyle
           </label>
           <br />
           <button type="button" id="submit-guesses">Submit Guesses</button>
@@ -142,6 +152,7 @@
             This chart shows the percentage prevalance of diabetes within different countries and income groups.
             Data is compiled from the World Bank data on diabetic indicators, using data from 2021.
         </p>
+        <br />
         <div id="country-search">
             <label>
                 Country:

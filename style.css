@@ -285,3 +285,7 @@ select {
   background-color: #ffcdd2;
   color: #c62828;
 }
+
+#intro {
+  text-align: left !important;
+}

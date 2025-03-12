@@ -445,9 +445,13 @@ function handleGuessSubmit() {
     resultMsg += `<p>You missed these factor(s): ${missedFactors.join(", ")}.</p>`;
   }
   resultMsg += `
-    <p><em>Note:</em> High fasting glucose levels, sedentary lifestyle, and consuming foods high in fat 
-    can contribute to diabetes risk. In this simplified quiz, other factors like gender, age, stress, and foods high in sugar 
-    are not considered main factors.</p>
+    <p><em>About your results:</em> High fasting glucose levels, sedentary lifestyle, and consuming foods high in fat 
+    are the main indicators to diabetes risk.
+    
+    Notably, sugar itself is not directly a major contributor to diabetes.
+    While processed foods and sugary drinks have been correlated with diabetes, sugar itself does not directly contribute.
+    Consuming too much sugar might make you overweight, which does increase your risk to developing diabetes.
+    </p>
   `;
   const guessingResults = document.getElementById("guessing-results");
   guessingResults.innerHTML = resultMsg;
