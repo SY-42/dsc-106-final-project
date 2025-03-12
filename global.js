@@ -141,6 +141,19 @@ function createScatterplot(data, restingData) {
   .attr("fill", "black")
   .text(yAxisLabel);
 
+  // Add Participant label and diagnosis
+  const diagnosisText = isPrediabetic(parseInt(currParticipant));
+  const participantNum = parseInt(currParticipant)
+  diagnosisText.then((result) => {
+    svg.append("text")
+      .attr("text-anchor", "middle")
+      .attr("x", width / 2)
+      .attr("y", margin.top / 2)
+      .style("font-size", "16px")
+      .attr("fill", "black")
+      .text(`Participant ${parseInt(participantNum)} - ${result.diagnosis} (HbA1c: ${result.HbA1c}%)`);
+  });
+
 }
 
 function createFoodPlot(glucoseData, foodData) {
