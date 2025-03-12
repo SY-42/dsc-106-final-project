@@ -8,22 +8,18 @@
     <title>Understanding Diabetes - An Interactive Visualization</title>
 </head>
 <body>
-
     <h1>Understanding Diabetes</h1>
     <h2 id="subheading">An Interactive Visualization Explaining Causes, Risk Factors, Indicators, and Prevalence of Diabetes</h2>
     <h3 id="subheading">By Andy Huang, Cayden Pascual, Sage Yang, Isaiah Ton</h3>
 
     <div id="intro" class="section visible">
-        
         <p>
             Diabetes is a chronic disease that affects how insulin is processed in the body. It is a serious disease that can result in blindness, kidney failure, heart attacks, stroke and lower limb amputation.
-
-According to the World Health Organization, the number of people living with diabetes rose from 200 million in 1990 to 830 million in 2022, with increasing prevalence in low and middle income countries.
+            According to the World Health Organization, the number of people living with diabetes rose from 200 million in 1990 to 830 million in 2022, with increasing prevalence in low and middle income countries.
         </p>
     </div>
 
     <div id="visualization" class="section" style="display:none;">
-        <!-- Y-Axis Selector -->
         <div id="yaxis-selector">
             <label for="select-yaxis">Select Y-Axis:</label>
             <select id="select-yaxis">
@@ -31,13 +27,10 @@ According to the World Health Organization, the number of people living with dia
                 <option value="HR">Heart Rate</option>
             </select>
         </div>
-        
         <div id="main-container">
             <div class="container">
                 <svg id="chart"></svg>
             </div>
-            
-            <!-- Select Participant Dropdown -->
             <div id="sidebar">
                 <label id="select-dropdown">
                     Select Person:
@@ -55,8 +48,6 @@ According to the World Health Organization, the number of people living with dia
                         <option value="014">Participant 14</option>
                     </select>
                 </label>
-                
-                <!-- Filter By Dropdown -->
                 <div id="filter-container">
                     <label for="filter-type">Filter by:</label>
                     <select id="filter-type">
@@ -70,15 +61,12 @@ According to the World Health Organization, the number of people living with dia
                     <label for="filter-slider">Threshold:</label>
                     <input type="range" id="filter-slider" min="0" max="1000" step="1" value="500">
                     <span id="filter-value">500</span>
-
-                    <label for="filter-toggle">Enable Filter:  
+                    <label for="filter-toggle">Enable Filter:
                         <input type="checkbox" id="filter-toggle">
                     </label>
                 </div>
             </div>
         </div>
-
-        <!-- Table Hover Tooltip -->
         <div id="tooltip">
             <table>
                 <thead>
@@ -104,80 +92,64 @@ According to the World Health Organization, the number of people living with dia
     <div id="guessing-section" class="section" style="display:none;">
         <h2>Guessing Game: What Contributes to Diabetes?</h2>
         <p>Select all behaviors or factors you think might be correlated with developing diabetes:</p>
-      
         <form id="guessing-form">
-          <!-- Match checkbox values exactly to the correctFactors set -->
           <label>
             <input type="checkbox" name="factors" value="High Fasting Glucose Levels">
             High Fasting Glucose Levels
           </label>
           <br />
-      
           <label>
             <input type="checkbox" name="factors" value="Sedentary Lifestyle">
             Sedentary Lifestyle
           </label>
           <br />
-      
           <label>
             <input type="checkbox" name="factors" value="Foods High in Fat">
             Foods High in Fat
           </label>
           <br />
-      
           <label>
             <input type="checkbox" name="factors" value="Gender">
             Gender
           </label>
           <br />
-      
           <label>
             <input type="checkbox" name="factors" value="Age">
             Age
           </label>
           <br />
-      
           <label>
             <input type="checkbox" name="factors" value="Stress">
             Stress
           </label>
           <br />
-      
           <label>
             <input type="checkbox" name="factors" value="Foods High in Sugar">
             Foods High in Sugar
           </label>
           <br />
-      
           <button type="button" id="submit-guesses">Submit Guesses</button>
         </form>
-      
         <div id="guessing-results"></div>
-      </div>
+    </div>
 
     <div id="global-section" class="section" style="display:none;">
-
         <h2>
             Diabetes Prevalence in Different Countries
         </h2>
-        
-        <div id="global-stats">
-        </div>
-        
+        <div id="global-stats"></div>
         <p>
             This chart shows the percentage prevalance of diabetes within different countries and income groups.
             Data is compiled from the World Bank data on diabetic indicators, using data from 2021.
         </p>
-
         <div id="country-search">
             <label>
-                Country: 
+                Country:
                 <input type="text" id="country-input" placeholder="Search for your country...">
             </label>
-            
         </div>
-
     </div>
+
     <div id="writeup" class="section writeup" style="display:none;">
         <h2>Team GG</h2>
         <ul>
@@ -200,11 +172,15 @@ According to the World Health Organization, the number of people living with dia
             In terms of the most challenging parts of the project to design, we suspect that the interaction smoothness of each of the visualizations will probably be quite time consuming.
             We are also trying to convey an appropriate message through this project about diabetes and what factors can exacerbate/cause it and thus will take extra effort from us to do so.
             The styling of the page as a whole will likely be the most difficult, as we want to make the process as fluid and continuous as possible.
-            Doing this will continue to require many trial and error attempts to find the perfect way to convey and display everything that we want to. 
+            Doing this will continue to require many trial and error attempts to find the perfect way to convey and display everything that we want to.
         </p>
     </div>
-    
-    <button id="prev-button" style= "display:none;"><img src="./assets/next.png" width="20" height="20" style="position: relative; transform: rotate(180deg);"></button>
-    <button id="next-button"><img src="./assets/next.png" width="20" height="20" style="position: relative;"></button>
+
+    <button id="prev-button" style="display:none;">
+      <img src="./assets/next.png" width="20" height="20" style="position: relative; transform: rotate(180deg);">
+    </button>
+    <button id="next-button">
+      <img src="./assets/next.png" width="20" height="20" style="position: relative;">
+    </button>
 </body>
 </html>
