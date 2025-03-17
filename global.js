@@ -100,6 +100,7 @@ function createScatterplot(data, restingData) {
   xScale.range([usableArea.left, usableArea.right]);
   yScale.range([usableArea.bottom, usableArea.top]);
 
+  
   const dots = svg.append("g").attr("class", "dots");
 
   dots
@@ -109,7 +110,7 @@ function createScatterplot(data, restingData) {
     .attr("cx", d => xScale(d.timestamp))
     .attr("cy", d => yScale(+d[xVar]))
     .attr("r", 1.5)
-    .attr("fill", d => d.highlight ? "#ccc" : "steelblue")
+    .attr("fill", d => d.highlight)
     .style("fill-opacity", 0.7);
 
   if (currDataset === "HR") {
@@ -262,30 +263,54 @@ function updatePlots() {
   if (currDataset !== "Dexcom") return;
   d3.select("#chart").selectAll("svg").remove();
   if (!globalFoodData || !globalGlucoseData) return;
+  
   const threshold = +d3.select("#filter-slider").property("value");
   const selectedFilter = d3.select("#filter-type").property("value");
   const isFilteringEnabled = d3.select("#filter-toggle").property("checked");
   d3.select("#filter-value").text(threshold);
-  const fullGlucoseData = globalGlucoseData.map(d => ({ ...d, highlight: false }));
+  
+  const fullGlucoseData = globalGlucoseData.map(d => ({ ...d, highlight: "steelblue" }));
+  
   if (!isFilteringEnabled) {
     createScatterplot(fullGlucoseData);
     createFoodPlot(fullGlucoseData, globalFoodData);
     return;
   }
+  
   const filteredFoodData = globalFoodData.filter(d =>
     +d.combined_stats[selectedFilter] >= threshold
   );
-  const validTimestamps = new Set(filteredFoodData.map(d => d.start.getTime()));
-  if (validTimestamps.size > 0) {
+  
+  if (filteredFoodData.length > 0) {
+    const maxMacro = d3.max(filteredFoodData, d => +d.combined_stats[selectedFilter]);
+    const timeWindow = 2 * 60 * 60 * 1000; // 2 hours
+    
     fullGlucoseData.forEach(d => {
-      d.highlight = !Array.from(validTimestamps).some(time =>
-        Math.abs(d.timestamp - time) < 2 * 60 * 60 * 1000
+      const nearFiltered = filteredFoodData.some(fd =>
+        Math.abs(d.timestamp - fd.start.getTime()) < timeWindow
       );
+      if (!nearFiltered) {
+        d.highlight = "#ccc";
+      } else {
+        d.highlight = "steelblue";
+      }
+      const nearMax = filteredFoodData.some(fd =>
+        Math.abs(d.timestamp - fd.start.getTime()) < timeWindow &&
+        (+fd.combined_stats[selectedFilter] === maxMacro)
+      );
+      if (nearMax) {
+        d.highlight = "red";
+      }
     });
   }
+  
   createScatterplot(fullGlucoseData);
   createFoodPlot(fullGlucoseData, filteredFoodData);
 }
+
+
+
+
 
 let currentCountry;
 
@@ -334,7 +359,7 @@ const displayStats = (filtered_stats) => {
 };
 
 async function main(dataset = "001") {
-  d3.select("#chart").selectAll("*").remove();
+  d3.select("#chart").html("");
   let data;
   let glucoseData = await loadData(`./data/Dexcom_${dataset}.csv`);
   let foodData = await loadData(`./data/Food_Log_${dataset}.csv`);
