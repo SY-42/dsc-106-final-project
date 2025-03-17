@@ -340,11 +340,15 @@ async function main(dataset = "001") {
   let foodData = await loadData(`./data/Food_Log_${dataset}.csv`);
   let hrData = await d3.csv(`./data/HR_${dataset}.csv`);
   let restingData = null;
+  const filterContainer = document.getElementById("filter-container");
+
   if (currDataset === "Dexcom") {
     data = glucoseData;
+    filterContainer.classList.remove("disabled");
   } else {
     data = averageHeartRateData(hrData);
     restingData = restingHeartRateData(hrData);
+    filterContainer.classList.add("disabled");
   }
   globalGlucoseData = glucoseData;
   globalFoodData = foodData;

@@ -101,6 +101,13 @@ svg#food-data {
   box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
   height: 315px;
 }
+
+/*CSS For container when disabling*/
+#filter-container.disabled {
+  opacity: 0.5; /* grays out */
+  pointer-events: none; /* prevents interactions */
+}
+
 #filter-type {
   width: 100%;
   padding: 0.5em;
