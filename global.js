@@ -101,6 +101,7 @@ function createScatterplot(data, restingData) {
   yScale.range([usableArea.bottom, usableArea.top]);
 
   const dots = svg.append("g").attr("class", "dots");
+  
 
   dots
     .selectAll("circle")
@@ -131,6 +132,11 @@ function createScatterplot(data, restingData) {
       .attr("font-family", "Arial")
       .text("Resting Heart Rate");
   }
+  const legend = svg.append("g")
+  .attr("class", "legend")
+  .attr("transform", `translate(${width - margin.right-75}, ${margin.top})`)
+  .attr("opacity", 0.7)
+  .attr("background-color", "");
 
   svg.append("text")
     .attr("text-anchor", "middle") 
@@ -153,9 +159,8 @@ function createScatterplot(data, restingData) {
       .text(`Participant ${participantNum} - ${result.diagnosis} (HbA1c: ${result.HbA1c}%)`);
   });
 
-  const legend = svg.append("g")
-      .attr("class", "legend")
-      .attr("transform", `translate(${width - margin.right - 150}, ${margin.top})`);
+
+
 
   const legendData = [
     { color: "steelblue", label: "Active Data" },
