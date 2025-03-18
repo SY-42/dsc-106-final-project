@@ -455,7 +455,8 @@ const correctFactors = new Set([
   "High Fasting Glucose Levels",
   "Sedentary Lifestyle",
   "Foods High in Fat",
-  "Foods High in Sugar"
+  "Foods High in Sugar",
+  "Genetics"
 ]);
 
 document.addEventListener("DOMContentLoaded", function() {
