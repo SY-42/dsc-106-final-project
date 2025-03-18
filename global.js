@@ -109,7 +109,7 @@ function createScatterplot(data, restingData) {
     .attr("cx", d => xScale(d.timestamp))
     .attr("cy", d => yScale(+d[xVar]))
     .attr("r", 1.5)
-    .attr("fill", d => d.highlight)
+    .attr("fill", d => currDataset === "HR" ? "steelblue" : d.highlight) 
     .style("fill-opacity", 0.7);
 
   if (currDataset === "HR") {
@@ -282,7 +282,9 @@ function updateSliderLabel() {
 }
 
 function updatePlots() {
-  if (currDataset !== "Dexcom") return;
+  if (currDataset !== "Dexcom") {
+    return;
+  }
   d3.select("#chart").selectAll("svg").remove();
   if (!globalFoodData || !globalGlucoseData) return;
   
