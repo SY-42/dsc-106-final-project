@@ -454,7 +454,8 @@ main().then(() => {
 const correctFactors = new Set([
   "High Fasting Glucose Levels",
   "Sedentary Lifestyle",
-  "Foods High in Fat"
+  "Foods High in Fat",
+  "Foods High in Sugar"
 ]);
 
 document.addEventListener("DOMContentLoaded", function() {
@@ -504,11 +505,11 @@ function handleGuessSubmit() {
     resultMsg += `<p>You missed these factor(s): ${missedFactors.join(", ")}.</p>`;
   }
   resultMsg += `
-    <p><em>About your results:</em> High fasting glucose levels, sedentary lifestyle, and consuming foods high in fat 
+    <p><em>About your results:</em> High fasting glucose levels, sedentary lifestyle, sugary diet, and consuming foods high in fat 
     are the main indicators to diabetes risk.
     
-    Notably, sugar itself is not directly a major contributor to diabetes.
-    While processed foods and sugary drinks have been correlated with diabetes, sugar itself does not directly contribute.
+    Notably, sugar itself is not directly a major contributor to diabetes. 
+    While processed foods and sugary drinks have been correlated with diabetes, sugar itself is not the only indicator.
     Consuming too much sugar might make you overweight, which does increase your risk to developing diabetes.
     </p>
   `;
