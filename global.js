@@ -100,7 +100,6 @@ function createScatterplot(data, restingData) {
   xScale.range([usableArea.left, usableArea.right]);
   yScale.range([usableArea.bottom, usableArea.top]);
 
-  
   const dots = svg.append("g").attr("class", "dots");
 
   dots
@@ -134,17 +133,16 @@ function createScatterplot(data, restingData) {
   }
 
   svg.append("text")
-  .attr("text-anchor", "middle") 
-  .attr("transform", `rotate(-90)`) 
-  .attr("x", -height / 2) 
-  .attr("y", margin.left / 2 - 30) 
-  .style("font-size", "14px")
-  .attr("fill", "black")
-  .text(yAxisLabel);
+    .attr("text-anchor", "middle") 
+    .attr("transform", `rotate(-90)`) 
+    .attr("x", -height / 2) 
+    .attr("y", margin.left / 2 - 30) 
+    .style("font-size", "14px")
+    .attr("fill", "black")
+    .text(yAxisLabel);
 
-  // Add Participant label and diagnosis
   const diagnosisText = isPrediabetic(parseInt(currParticipant));
-  const participantNum = parseInt(currParticipant)
+  const participantNum = parseInt(currParticipant);
   diagnosisText.then((result) => {
     svg.append("text")
       .attr("text-anchor", "middle")
@@ -152,9 +150,33 @@ function createScatterplot(data, restingData) {
       .attr("y", margin.top / 2)
       .style("font-size", "16px")
       .attr("fill", "black")
-      .text(`Participant ${parseInt(participantNum)} - ${result.diagnosis} (HbA1c: ${result.HbA1c}%)`);
+      .text(`Participant ${participantNum} - ${result.diagnosis} (HbA1c: ${result.HbA1c}%)`);
   });
 
+  const legend = svg.append("g")
+      .attr("class", "legend")
+      .attr("transform", `translate(${width - margin.right - 150}, ${margin.top})`);
+
+  const legendData = [
+    { color: "steelblue", label: "In-Window Data" },
+    { color: "#ccc", label: "Out-of-Window Data" },
+    { color: "red", label: "Max Macro Highlight" }
+  ];
+
+  legendData.forEach((d, i) => {
+    const legendRow = legend.append("g")
+      .attr("transform", `translate(0, ${i * 20})`);
+    legendRow.append("rect")
+      .attr("width", 12)
+      .attr("height", 12)
+      .attr("fill", d.color);
+    legendRow.append("text")
+      .attr("x", 20)
+      .attr("y", 10)
+      .attr("text-anchor", "start")
+      .style("font-size", "12px")
+      .text(d.label);
+  });
 }
 
 function createFoodPlot(glucoseData, foodData) {
@@ -283,7 +305,7 @@ function updatePlots() {
   
   if (filteredFoodData.length > 0) {
     const maxMacro = d3.max(filteredFoodData, d => +d.combined_stats[selectedFilter]);
-    const timeWindow = 2 * 60 * 60 * 1000; // 2 hours
+    const timeWindow = 2 * 60 * 60 * 1000;
     
     fullGlucoseData.forEach(d => {
       const nearFiltered = filteredFoodData.some(fd =>
@@ -307,10 +329,6 @@ function updatePlots() {
   createScatterplot(fullGlucoseData);
   createFoodPlot(fullGlucoseData, filteredFoodData);
 }
-
-
-
-
 
 let currentCountry;
 
@@ -430,12 +448,10 @@ document.addEventListener("DOMContentLoaded", function() {
   if (guessButton) {
     guessButton.addEventListener("click", handleGuessSubmit);
   }
-
   d3.select("#filter-slider").on("input", function () {
-    d3.select("#filter-value").text(this.value); // Update displayed value
+    d3.select("#filter-value").text(this.value);
     updatePlots();
   });
-
   d3.select("#filter-type").on("change", function () {
     updateSliderLabel();
   });

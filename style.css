@@ -101,13 +101,10 @@ svg#food-data {
   box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
   height: 315px;
 }
-
-/*CSS For container when disabling*/
 #filter-container.disabled {
-  opacity: 0.5; /* grays out */
-  pointer-events: none; /* prevents interactions */
+  opacity: 0.5;
+  pointer-events: none;
 }
-
 #filter-type {
   width: 100%;
   padding: 0.5em;
@@ -124,8 +121,6 @@ svg#food-data {
   text-align: center;
   width: 100%;
 }
-
-
 .gridlines line {
   stroke: #ccc;
   stroke-dasharray: 3,3;
@@ -154,7 +149,7 @@ select {
   margin: 2rem auto;
   border: 1px solid #ccc;
   border-radius: 8px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
   text-align: center;
 }
 .writeup h2,
@@ -271,10 +266,13 @@ select {
   background-color: white;
   border: 1px solid #ccc;
   border-radius: 8px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
   text-align: center;
   font-family: Arial, sans-serif;
   line-height: 1.6;
+}
+#intro {
+  text-align: left !important;
 }
 #yaxis-selector {
   display: flex;
@@ -292,7 +290,27 @@ select {
   background-color: #ffcdd2;
   color: #c62828;
 }
-
-#intro {
-  text-align: left !important;
+#video-container {
+  text-align: center;
+  margin: 20px auto;
+  max-width: 560px;
+  position: relative;
+}
+#video-preview img {
+  width: 100%;
+  height: auto;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  cursor: pointer;
+}
+#video-preview #play-button {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 3rem;
+  color: white;
+  text-shadow: 0 0 10px rgba(0,0,0,0.7);
+  pointer-events: none;
 }

@@ -23,6 +23,12 @@
             You might also challenge some of the assumptions you might have heard about diabetes.
         </p>
         <br>
+        <div id="video-container">
+          <div id="video-preview">
+            <img src="https://img.youtube.com/vi/aNaG7EsRoBM/0.jpg" alt="Video preview">
+            <div id="play-button">▶</div>
+          </div>
+        </div>
         <p>
             First, let's get a sense of scale. 
             The following visualization shows the prevalence of diabetes in different countries.
@@ -177,8 +183,6 @@
             Many believe sugar to be the main cause of diabetes, but in reality, it is a combination of many factors that can lead to the development of the disease.
         </p>
         <p>
-            
-
             Diabetes is a complex condition influenced by a wide range of factors—far more than can be shown here. 
             With this project, we aim to provide an interactive visualization that highlights a few of the causes, 
             risk factors, indicators, and prevalence rates of diabetes, while also debunking common misconceptions 
@@ -212,5 +216,20 @@
     <button id="next-button">
       <img src="./assets/next.png" width="30" height="30" style="position: relative;">
     </button>
+    <script>
+document.addEventListener("DOMContentLoaded", function() {
+  const videoPreview = document.getElementById("video-preview");
+  videoPreview.addEventListener("click", function() {
+    const iframe = document.createElement("iframe");
+    iframe.src = "https://www.youtube.com/embed/aNaG7EsRoBM?autoplay=1";
+    iframe.width = "560";
+    iframe.height = "315";
+    iframe.frameBorder = "0";
+    iframe.allow = "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture";
+    iframe.allowFullscreen = true;
+    videoPreview.parentNode.replaceChild(iframe, videoPreview);
+  });
+});
+    </script>
 </body>
 </html>
