@@ -158,10 +158,22 @@ function createScatterplot(data, restingData) {
       .attr("transform", `translate(${width - margin.right - 150}, ${margin.top})`);
 
   const legendData = [
-    { color: "steelblue", label: "In-Window Data" },
-    { color: "#ccc", label: "Out-of-Window Data" },
-    { color: "red", label: "Max Macro Highlight" }
+    { color: "steelblue", label: "Active Data" },
+    { color: "#ccc", label: "Inactive Data" },
+    { color: "red", label: "Peak Value" },
+    { color: "green", label: "Food Log" }
   ];
+
+  legend.append("rect")
+    .attr("x", -15)
+    .attr("y", -15)
+    .attr("width", 140)
+    .attr("height", legendData.length * 20 + 20)
+    .attr("rx", 5)
+    .attr("ry", 5)
+    .attr("fill", "white")
+    .attr("stroke", "#ccc")
+    .attr("stroke-width", 1);
 
   legendData.forEach((d, i) => {
     const legendRow = legend.append("g")
@@ -326,7 +338,7 @@ function updatePlots() {
     });
   }
   
-  createScatterplot(fullGlucoseData);
+  createScatterplot(fullGlucoseData, null);
   createFoodPlot(fullGlucoseData, filteredFoodData);
 }
 
